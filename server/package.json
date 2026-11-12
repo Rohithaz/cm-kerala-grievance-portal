@@ -1,0 +1,25 @@
+{
+    "name": "@cm-kerala/server",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "node --watch src/server.js",
+        "start": "node src/server.js",
+        "db:migrate": "node src/scripts/migrate.js",
+        "db:seed": "node src/scripts/seed.js",
+        "db:seed:demo": "node src/scripts/seedDemoAccounts.js",
+        "test:ai": "node --test test/ai.integration.test.js"
+    },
+    "dependencies": {
+        "bcryptjs": "^3.0.3",
+        "cookie-parser": "^1.4.7",
+        "cors": "^2.8.5",
+        "dotenv": "^16.6.1",
+        "express": "^5.1.0",
+        "express-rate-limit": "^8.7.4",
+        "jsonwebtoken": "^9.0.3",
+        "multer": "^2.5.0",
+        "mysql2": "^3.15.2"
+    }
+}

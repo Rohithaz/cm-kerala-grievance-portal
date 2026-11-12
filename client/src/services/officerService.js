@@ -1,0 +1,12 @@
+import { api } from './api.js';
+const data=p=>p.then(({data:r})=>r.data);
+export const getOfficerStats=()=>data(api.get('/officer/statistics'));
+export const getOfficerGrievances=params=>data(api.get('/officer/grievances',{params}));
+export const getOfficerGrievance=id=>data(api.get(`/officer/grievances/${encodeURIComponent(id)}`));
+export const addOfficerRemark=(id,input)=>data(api.post(`/officer/grievances/${encodeURIComponent(id)}/remarks`,input));
+export const updateOfficerStatus=(id,input)=>data(api.post(`/officer/grievances/${encodeURIComponent(id)}/status`,input));
+export const createOfficerReport=(id,input)=>data(api.post(`/officer/grievances/${encodeURIComponent(id)}/action-reports`,input));
+export const updateOfficerReport=(id,reportId,input)=>data(api.patch(`/officer/grievances/${encodeURIComponent(id)}/action-reports/${encodeURIComponent(reportId)}`,input));
+export const submitOfficerReport=(id,reportId)=>data(api.post(`/officer/grievances/${encodeURIComponent(id)}/action-reports/${encodeURIComponent(reportId)}/submit`));
+export const uploadOfficerReportAttachment=(reportId,file)=>{const body=new FormData();body.append('attachments',file);return data(api.post(`/officer/action-reports/${encodeURIComponent(reportId)}/attachments`,body,{timeout:60000}));};
+export const getOfficerReportAttachmentUrl=id=>`${api.defaults.baseURL}/cmo/action-reports/attachments/${encodeURIComponent(id)}/download`;
